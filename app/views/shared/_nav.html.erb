@@ -1,0 +1,30 @@
+<ul>
+  <li>
+    <a href="/movies">Movies</a>
+  </li>
+  <li>
+    <a href="/directors">Directors</a>
+  </li>
+  <li>
+    <a href="/actors">Actors</a>
+  </li>
+  <li>
+    <a href="/characters">Characters</a>
+  </li>
+
+  <% if @current_user.nil? %>
+    <li>
+        <a href="/user_sign_up">Sign up</a>
+    </li>
+    <li>
+      <a href="/user_sign_in">Sign in</a>
+    </li>
+  <% else %>
+    <li>
+      <a href="/bookmarks"><%= @current_user.first_name %> 's' bookmarks</a>
+    </li>
+    <li>
+      <a href="/user_sign_out">Sign out</a>
+    </li>
+  <% end %>
+</ul>
