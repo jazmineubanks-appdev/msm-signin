@@ -1,12 +1,12 @@
 class MoviesController < ApplicationController
-def add_user_bookmark
-b = Bookmark.new
-b.user_id = params.fetch("the_user_id")
-b/movie_id = params.fetch("the_movie_id")
-b.save
+  def add_user_bookmark
+    b = Bookmark.new
+    b.user_id = params.fetch("the_user_id")
+    b / movie_id = params.fetch("the_movie_id")
+    b.save
 
-redirect_to "/bookmarks", :notice => "Bookmarked movie"
-end
+    redirect_to "/bookmarks", :notice => "Bookmarked movie"
+  end
 
   def index
     matching_movies = Movie.all
@@ -56,7 +56,7 @@ end
 
     if the_movie.valid?
       the_movie.save
-      redirect_to("/movies/#{the_movie.id}", { :notice => "Movie updated successfully."} )
+      redirect_to("/movies/#{the_movie.id}", { :notice => "Movie updated successfully." })
     else
       redirect_to("/movies/#{the_movie.id}", { :alert => the_movie.errors.full_messages.to_sentence })
     end
@@ -68,6 +68,6 @@ end
 
     the_movie.destroy
 
-    redirect_to("/movies", { :notice => "Movie deleted successfully."} )
+    redirect_to("/movies", { :notice => "Movie deleted successfully." })
   end
 end
