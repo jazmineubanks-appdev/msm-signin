@@ -8,11 +8,13 @@
     <h1>
       Movie #<%= @the_movie.id %> details
     </h1>
+ <%if session.fetch(:user_id) == nil %>
+    <%else%>
+    
+    <% current_user_bookmarks = Bookmark.where({ :movie_id => @the_movie.id, :user_id => session.fetch(:user_id) })%>
+    <% the_bookmark = current_user_bookmarks.at(0) %>
 
-  <% current_user_bookmark = Bookmark.where({ :movie_id => @the_movie.id => @the_movie.id, :user_id => session.fetch(:user_id) }) %>
-  <% the_bookmark = current_user_bookmarks.at(0) %>
-
-  <% if the_bookmark == nil %>
+  <% if current_user_bookmarks.count == 0 %>
 
   <form action="/insert_bookmark" method="post">
   
@@ -23,6 +25,7 @@
   </form>
 <% else %>
 <a href="/delete_bookmark/<%= the_bookmark.id %>">Un-bookmark</a>
+<% end %>
 <% end %>
 
 
